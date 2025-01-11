@@ -29,11 +29,7 @@ timer = Timer()
 devID = '99'
 devName = 'PICOW'
 devType = 'picobase'
-#wlan = network.WLAN(network.STA_IF)
-#wlan_ip_addr="192.168.0.99"
-#wlan_gw_addr="192.168.0.1"
-#wlan_dns_addr="8.8.8.8"
-#wlan_nmask_addr="255.255.255.0"
+
 
 ws_host="192.168.0.x"
 ws_port=8090
@@ -67,34 +63,6 @@ def senddevicestatus():
         ws.send(json.dumps(data))
         sleep(1)
 
-def wlanconnect():
-    #Connect to WLAN
-    global wlan
-    global wlan_ip_addr
-    global wlan_gw_addr
-    global wlan_dns_addr
-    global wlan_nmask_addr
-    #wlan.config(pm = 0xa11140)
-    wlan.active(True)
-    wlan.ifconfig((wlan_ip_addr,wlan_nmask_addr,wlan_gw_addr,wlan_dns_addr))
-
-    
-    
-    while wlan.isconnected() == False:
-        try:
-            wlan.connect(ssid, password)
-            #if debugit:print('Waiting for wlan connection...')
-            sleep(1)
-        except KeyboardInterrupt:
-            return
-        except:
-            #if debugit:print(err)
-            continue
-    #if debugit:print(wlan.ifconfig())
-    ip = wlan.ifconfig()[0]
-    #if debugit:print(f'Connected on {ip}')
-    #timer.init(freq=2.5, mode=Timer.PERIODIC, callback=ledblink)
-    return ip
 
 def wsconnect():
     global wsIsConnected
