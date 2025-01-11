@@ -102,7 +102,7 @@ def wsconnect():
     send_header(b'Upgrade: WebSocket')
     send_header(b'Sec-WebSocket-Key: %s', key)
     send_header(b'Sec-WebSocket-Version: 13')
-    #send_header(b'Origin: http://192.168.0.22:8090')
+    #send_header(b'Origin: http://192.168.0.x:8090')
     send_header(b'')
 
     header = sock.readline()[:-2]
@@ -151,7 +151,6 @@ def ws_send_auth():
     
 def ThreadTask(thestate):
     #if debugit:print("starting task with state", thestate)
-    thecount = 0
     if thestate == "0":
         timer.deinit()
         ledoff()
